@@ -1,24 +1,5 @@
 /* Customize scrollbar for WebKit browsers */
 ::-webkit-scrollbar {
   width: 15px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: #c2f6f2;
-  border-radius: 4px;
-  /* width: 100%; */
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #021739;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #547c7f;
-}
-
-* {
-  margin: 0;
-  padding: 0;
+  display: none;
 }
