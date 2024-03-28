@@ -1,29 +1,44 @@
-import { Box } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
-function ListItem() {
+interface Props {
+  title: string;
+  active: boolean;
+  style?: React.CSSProperties;
+  onClick: () => void;
+}
+
+const ListItem = ({ title, style, active, onClick }: Props) => {
   return (
-    <Box
+    <Flex
+      _hover={{
+        backgroundColor: active ? "none" : "rgba(247, 209, 161,.4)",
+        cursor: "pointer",
+        color: "#f7d1a1",
+      }}
+      bgColor={active ? "#f7d1a1" : "transparent"}
       style={{
         width: "100%",
-        height: "100px",
+        padding: active ? "6px" : "3px",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "rgba(157, 102, 81,.4)",
-        borderRadius: "15px",
-        marginBottom: "10px",
+        height: active ? "60px" : "50px",
+        ...style,
       }}
+      onClick={onClick}
     >
-      <Box
+      <Text
+        color={active ? "#9d6651" : "#fff"}
+        fontSize={active ? "22px" : "18px"}
+        fontWeight={active ? 900 : 600}
         style={{
-          width: "80px",
-          height: "80px",
-          borderRadius: "50%",
-          backgroundColor: "white",
+          transition: ".5s",
         }}
-      ></Box>
-    </Box>
+      >
+        {title}
+      </Text>
+    </Flex>
   );
-}
+};
 
 export default ListItem;
