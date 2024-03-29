@@ -32,7 +32,7 @@ const ListItem = ({ title, style, active, onClick }: Props) => {
         fontSize={active ? "22px" : "18px"}
         fontWeight={active ? 900 : 600}
         style={{
-          transition: ".5s",
+          transition: "0.5s",
         }}
       >
         {title}

@@ -8,20 +8,26 @@ import ListItem from "./ListItem";
 function ListPanel() {
   const selectedData = dataStore((s) => s.selectedData);
   const [active, setActive] = useState(-1);
+
   useEffect(() => {
     setActive(-1);
   }, [selectedData]);
   return (
     <Box
       style={{
-        display: "flex",
         width: "200px",
         height: "100vh",
         borderTopRightRadius: 20,
         backgroundColor: "#9d6651",
         flexDirection: "column",
         justifyContent: "center",
+
+        opacity: selectedData?.length ? 1 : 0,
+        transform:
+          selectedData?.length > 0 ? "translateX(0px)" : "translateX(-200px)",
+        transition: "opacity 1.3s ease-in-out, transform 1.5s ease-in-out",
       }}
+      visibility={selectedData?.length > 0 ? "visible" : "hidden"}
     >
       <Box
         style={{
@@ -49,8 +55,11 @@ function ListPanel() {
               />
               <hr
                 style={{
-                  width: "70%",
-                  alignSelf: "center",
+                  width: "80%",
+                  // height: "8px",
+                  alignSelf: "flex-end",
+                  color: "#f7d1a1",
+                  backgroundColor: "#f7d1a1",
                 }}
               />
             </Box>
