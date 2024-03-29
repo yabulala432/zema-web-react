@@ -76,7 +76,7 @@ const SidePanel = () => {
           style={{
             width: "100%",
             height: expandPanel ? "300px" : "110px",
-            backgroundColor: "white",
+            backgroundColor: "#f7d1a1",
             borderRadius: "50%",
             alignSelf: "flex-end",
             transition: "1.5s",

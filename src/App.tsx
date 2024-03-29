@@ -5,7 +5,7 @@ import ListPanel from "./components/list-container/ListPanel";
 
 function App() {
   return (
-    <Box display="flex" height="100vh">
+    <Box display="flex" bg={"#f7d1a1"} height="100vh">
       <SidePanel />
       <ListPanel />
     </Box>
