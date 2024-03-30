@@ -12,6 +12,7 @@ function ListPanel() {
   useEffect(() => {
     setActive(-1);
   }, [selectedData]);
+
   return (
     <Box
       style={{
