@@ -1,14 +1,22 @@
-import { Box } from "@chakra-ui/react";
-import SidePanel from "./components/side-panels/SidePanel";
+import { Box, Flex } from "@chakra-ui/react";
 import "./App.css";
 import ListPanel from "./components/list-container/ListPanel";
+import ImageDisplay from "./components/main-screen/ImageDisplay";
+import SidePanel from "./components/side-panels/SidePanel";
 
 function App() {
   return (
-    <Box display="flex" bg={"#f7d1a1"} height="100vh">
-      <SidePanel />
-      <ListPanel />
-    </Box>
+    <Flex bg={"#f7d1a1"}>
+      <Box>
+        <SidePanel />
+      </Box>
+      <Box>
+        <ListPanel />
+      </Box>
+      <Box width={"100%"}>
+        <ImageDisplay />
+      </Box>
+    </Flex>
   );
 }
 

@@ -21,7 +21,6 @@ const SidePanel = () => {
   const [expandPanel, setExpandPanel] = useState(true);
   const [active, setActive] = useState(-1);
 
-  // const [data, setData] = useState<Data[] | any>([]);
   const { data, setData, setSelectedData } = dataStore();
 
   useEffect(() => {
@@ -35,9 +34,10 @@ const SidePanel = () => {
       style={{
         height: "100vh",
         width: expandPanel ? "300px" : "110px",
+        minWidth: "110px",
+        maxWidth: "300px",
         color: "white",
-        display: "flex",
-        flexDirection: "column",
+        display: "flescolumn",
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
         transition: "width 1.5s",
         gap: 0,

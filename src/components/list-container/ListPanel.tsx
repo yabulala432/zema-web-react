@@ -15,7 +15,7 @@ function ListPanel() {
   return (
     <Box
       style={{
-        width: "200px",
+        minWidth: "200px",
         height: "100vh",
         borderTopRightRadius: 20,
         backgroundColor: "#9d6651",
