@@ -21,7 +21,6 @@ function ListPanel() {
         backgroundColor: "#9d6651",
         flexDirection: "column",
         justifyContent: "center",
-
         opacity: selectedData?.length ? 1 : 0,
         transform:
           selectedData?.length > 0 ? "translateX(0px)" : "translateX(-200px)",
@@ -56,10 +55,7 @@ function ListPanel() {
               <hr
                 style={{
                   width: "80%",
-                  // height: "8px",
                   alignSelf: "flex-end",
-                  color: "#f7d1a1",
-                  backgroundColor: "#f7d1a1",
                 }}
               />
             </Box>

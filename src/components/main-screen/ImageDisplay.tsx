@@ -1,6 +1,7 @@
-import { Box, Image, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 import AudioPlayer from "./AudioPlayer";
+import FlipImagesCard from "./FlipImagesCard";
 
 function ImageDisplay() {
   return (
@@ -30,60 +31,11 @@ function ImageDisplay() {
         </Text>
       </Box>
       <Box display={"flex"} flexDir={"row"} gap={5}>
-        <Box
-          bgColor={"white"}
-          width={{
-            base: "250px",
-            md: "250px",
-            lg: "300px",
-          }}
-          height={{
-            base: "250px",
-            md: "250px",
-            lg: "300px",
-          }}
-          borderRadius={"10px"}
-          overflow={"hidden"}
-        >
-          <Image
-            style={{
-              width: "100%",
-              height: "100%",
-            }}
-            src="https://via.placeholder.com/300"
-            alt="placeholder"
-          />
-        </Box>
-
-        <Box
-          width={{
-            base: "250px",
-            md: "250px",
-            lg: "300px",
-          }}
-          height={{
-            base: "250px",
-            md: "250px",
-            lg: "300px",
-          }}
-          borderRadius={"10px"}
-          overflow={"hidden"}
-        >
-          <Image
-            style={{
-              width: "100%",
-              height: "100%",
-            }}
-            src="https://via.placeholder.com/300"
-            alt="placeholder"
-          />
-        </Box>
+        <FlipImagesCard />
       </Box>
 
-      <Box bg={"tomato"} width={"50%"}>
-        <AudioPlayer
-          src={"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"}
-        />
+      <Box width={"50%"}>
+        <AudioPlayer />
       </Box>
     </Box>
   );
