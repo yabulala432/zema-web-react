@@ -1,7 +1,7 @@
 import { Box, Text } from "@chakra-ui/react";
 
 import AudioPlayer from "./AudioPlayer";
-import FlipImagesCard from "./FlipImagesCard";
+import FlipImagesCard from "./flipping-images-card/FlipImagesCard";
 
 function ImageDisplay() {
   return (

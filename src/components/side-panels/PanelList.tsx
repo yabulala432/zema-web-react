@@ -27,7 +27,6 @@ const PanelList = ({
       bgColor={active ? "#9d6651" : "transparent"}
       style={{
         width: "100%",
-        // borderRadius: "15px",
         padding: active ? "6px" : "3px",
         display: "flex",
         alignItems: "center",

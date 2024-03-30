@@ -91,18 +91,14 @@ const SidePanel = () => {
           paddingLeft: "10px",
           paddingTop: "10px",
           paddingBottom: "10px",
-          // paddingRight: "10px",
           width: "100%",
           flex: 1,
-          // borderTopLeftRadius: "20px",
-          // borderTopRightRadius: "20px",
         }}
       >
         <VStack
           style={{
             overflowX: "hidden",
             overflowY: "scroll",
-            // rowGap: "10px",
             gap: 0,
           }}
         >
@@ -130,5 +126,4 @@ const SidePanel = () => {
   );
 };
 
-// rgb of #fed7a5 =
 export default SidePanel;

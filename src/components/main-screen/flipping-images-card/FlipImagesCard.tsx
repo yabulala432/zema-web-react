@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import FlipperButton from "./FlipperButton";
+import FlipperButton from "../flipper-button/FlipperButton";
 
 import "./FlipImagesCard.css";
 
