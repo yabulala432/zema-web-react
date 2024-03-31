@@ -2,6 +2,7 @@ import { Box, Text } from "@chakra-ui/react";
 
 import AudioPlayer from "./AudioPlayer";
 import FlipImagesCard from "./flipping-images-card/FlipImagesCard";
+import TitleContainer from "./TitleContainer";
 
 function ImageDisplay() {
   return (
@@ -15,21 +16,7 @@ function ImageDisplay() {
         flexDirection: "column",
       }}
     >
-      <Box
-        style={{
-          paddingBottom: "5px",
-        }}
-      >
-        <Text
-          style={{
-            color: "#9d6651",
-            fontWeight: "bolder",
-            fontSize: "30px",
-          }}
-        >
-          Title
-        </Text>
-      </Box>
+      <TitleContainer />
       <Box display={"flex"} flexDir={"row"} gap={5}>
         <FlipImagesCard />
       </Box>
