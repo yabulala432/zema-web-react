@@ -21,7 +21,7 @@ const SidePanel = () => {
   const [expandPanel, setExpandPanel] = useState(true);
   const [active, setActive] = useState(-1);
 
-  const { data, setData, setSelectedData } = dataStore();
+  const { data, setData, setSelectedData, setTitle } = dataStore();
 
   useEffect(() => {
     axios.get<Data[]>("http://localhost:3001/data").then((res) => {
@@ -109,6 +109,7 @@ const SidePanel = () => {
                   setActive(index);
                 }
                 setSelectedData(item.data);
+                setTitle(item.title);
               }}
               active={active === index}
               style={{
