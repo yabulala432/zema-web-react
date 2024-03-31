@@ -7,10 +7,12 @@ import ListItem from "./ListItem";
 
 function ListPanel() {
   const selectedData = dataStore((s) => s.selectedData);
+  const setZemaTitle = dataStore((s) => s.setZemaTitle);
   const [active, setActive] = useState(-1);
 
   useEffect(() => {
     setActive(-1);
+    // console.log({ selectedData });
   }, [selectedData]);
 
   return (
@@ -51,6 +53,8 @@ function ListPanel() {
                 active={active === index}
                 onClick={() => {
                   setActive(index);
+                  setZemaTitle(data);
+                  console.log({ data });
                 }}
               />
               <hr
