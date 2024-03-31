@@ -1,5 +1,6 @@
 import {
   Box,
+  HStack,
   IconButton,
   Slider,
   SliderFilledTrack,
@@ -9,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
+import ZemaTitle from "./ZemaTitle";
 
 const AudioPlayer: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -34,7 +36,6 @@ const AudioPlayer: React.FC = () => {
       if (audioRef.current.currentTime === audioRef.current.duration) {
         setIsPlaying(false);
         setCurrentTime(0);
-        console.log("Song ended");
       }
     }
   };
@@ -59,36 +60,46 @@ const AudioPlayer: React.FC = () => {
   };
 
   return (
-    <Box
-      display="flex"
-      gap={10}
-      marginTop={"20px"}
-      flexDir={"column"}
-      alignItems="center"
-      pos={"relative"}
-    >
+    <Box display="flex" gap={5} marginTop={"20px"} flexDir={"column"}>
       <audio
         ref={audioRef}
         src={"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleDurationChange}
       />
-      <IconButton
-        aria-label={isPlaying ? "Pause" : "Play"}
-        icon={isPlaying ? <FaPause /> : <FaPlay />}
-        onClick={handlePlay}
-        borderRadius={"50%"}
-        color={"#9d6651"}
-      />
-      <Box
+      <HStack
         style={{
-          width: "90%",
+          // backgroundColor: "red",
+          width: "50%",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
+          gap: 20,
+          alignSelf: "center",
+        }}
+      >
+        <IconButton
+          boxSize={"70px"}
+          aria-label={isPlaying ? "Pause" : "Play"}
+          icon={isPlaying ? <FaPause /> : <FaPlay />}
+          onClick={handlePlay}
+          borderRadius={"50%"}
+          bgColor={"#9d6651"}
+          color={"#fff"}
+          _hover={{
+            bgColor: "#9d6651",
+            opacity: 0.8,
+          }}
+        />
+        <ZemaTitle />
+      </HStack>
+
+      <Box
+        style={{
+          width: "75%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-around",
           flexDirection: "row",
-          position: "absolute",
-          bottom: "30px",
         }}
       >
         <Text
@@ -96,53 +107,53 @@ const AudioPlayer: React.FC = () => {
             color: "#9d6651",
             fontWeight: "bold",
           }}
-          marginRight="0.5rem"
         >
           {formatTime(currentTime)}
         </Text>
+
+        <Box
+          style={{
+            width: "70%",
+          }}
+        >
+          <Slider
+            flex="1"
+            min={0}
+            max={duration}
+            value={currentTime}
+            onChange={handleSliderChange}
+          >
+            <SliderTrack
+              style={{
+                backgroundColor: "#fff",
+                height: "10px",
+                borderRadius: "10px",
+              }}
+            >
+              <SliderFilledTrack
+                style={{
+                  backgroundColor: "#9d6651",
+                }}
+              />
+            </SliderTrack>
+            <SliderThumb
+              style={{
+                height: "20px",
+                width: "20px",
+                backgroundColor: "#9d6651",
+              }}
+            />
+          </Slider>
+        </Box>
+
         <Text
           style={{
             fontWeight: "bold",
             color: "#9d6651",
           }}
-          marginLeft="0.5rem"
         >
           {formatTime(duration)}
         </Text>
-      </Box>
-      <Box
-        style={{
-          width: "70%",
-        }}
-      >
-        <Slider
-          flex="1"
-          min={0}
-          max={duration}
-          value={currentTime}
-          onChange={handleSliderChange}
-        >
-          <SliderTrack
-            style={{
-              backgroundColor: "#fff",
-              height: "10px",
-              borderRadius: "10px",
-            }}
-          >
-            <SliderFilledTrack
-              style={{
-                backgroundColor: "#9d6651",
-              }}
-            />
-          </SliderTrack>
-          <SliderThumb
-            style={{
-              height: "20px",
-              width: "20px",
-              backgroundColor: "#9d6651",
-            }}
-          />
-        </Slider>
       </Box>
     </Box>
   );

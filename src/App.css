@@ -1,5 +1,7 @@
-/* Customize scrollbar for WebKit browsers */
 ::-webkit-scrollbar {
-  width: 15px;
   display: none;
+}
+
+* {
+  user-select: none;
 }
