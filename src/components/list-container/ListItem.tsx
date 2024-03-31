@@ -28,7 +28,7 @@ const ListItem = ({ title, style, active, onClick }: Props) => {
       onClick={onClick}
     >
       <Text
-        color={active ? "#9d6651" : "#f7d1a1"}
+        color={active ? "#9d6651" : "#fff"}
         fontSize={active ? "22px" : "18px"}
         fontWeight={active ? 900 : 600}
         style={{
