@@ -62,7 +62,7 @@ const SidePanel = () => {
           }}
         >
           <SpinningHamburgerMenu
-            size={40}
+            size={35}
             color="white"
             should_spin_forward={shouldSpin}
             onClick={() => {
