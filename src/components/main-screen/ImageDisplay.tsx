@@ -1,6 +1,6 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, HStack } from "@chakra-ui/react";
 
-import AudioPlayer from "./AudioPlayer";
+import Player from "./Player";
 import FlipImagesCard from "./flipping-images-card/FlipImagesCard";
 import TitleContainer from "./TitleContainer";
 
@@ -8,23 +8,13 @@ function ImageDisplay() {
   return (
     <Box
       style={{
-        width: "100%",
-        height: "100%",
         display: "flex",
         alignItems: "center",
         paddingTop: "20px",
         flexDirection: "column",
+        backgroundColor: "red",
       }}
-    >
-      <TitleContainer />
-      <Box display={"flex"} flexDir={"row"} gap={5}>
-        <FlipImagesCard />
-      </Box>
-
-      <Box width={"50%"}>
-        <AudioPlayer />
-      </Box>
-    </Box>
+    ></Box>
   );
 }
 

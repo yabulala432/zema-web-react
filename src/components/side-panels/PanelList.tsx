@@ -24,7 +24,7 @@ const PanelList = ({
         cursor: "pointer",
         color: "#9d6651",
       }}
-      bgColor={active ? "#9d6651" : "transparent"}
+      bgColor={active ? "#691c08" : "transparent"}
       style={{
         width: "100%",
         padding: active ? "6px" : "3px",

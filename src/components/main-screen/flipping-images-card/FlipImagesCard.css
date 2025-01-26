@@ -19,7 +19,7 @@
 .container {
   display: flex;
   flex-direction: row;
-  gap: 2em;
+  gap: 1em;
   align-items: center;
 }
 
@@ -31,7 +31,6 @@
 .card__content {
   text-align: center;
   position: relative;
-  padding: 15em 5em;
   transition: transform 3s;
   transform-style: preserve-3d;
 }
