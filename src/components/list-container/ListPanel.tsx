@@ -21,7 +21,7 @@ function ListPanel() {
         minWidth: "200px",
         height: "100vh",
         borderTopRightRadius: 20,
-        backgroundColor: "#9d6651",
+        backgroundColor: "#691c08",
         flexDirection: "column",
         justifyContent: "center",
         opacity: selectedData?.length ? 1 : 0,

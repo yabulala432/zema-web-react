@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-interface Data {
+export interface Data {
   title: string;
   name: string;
   imageUrl: string;

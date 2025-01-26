@@ -1,12 +1,60 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import { Box, VStack } from "@chakra-ui/react";
-import axios from "axios";
+import { Box, VStack, Avatar } from "@chakra-ui/react";
 
 import dataStore from "../../store/DataStore";
+import {
+  ezlKdaseAtnatewos,
+  ezlKdaseBaslyos,
+  ezlKdaseDiyoscoros,
+  ezlKdaseEgzi,
+  ezlKdaseEpifanyos,
+  ezlKdaseGorgoryos,
+  ezlKdaseGorgoryosKalie,
+  ezlKdaseHawaryat,
+  ezlKdaseKerlos,
+  ezlKdaseMaryam,
+  ezlKdaseMegbiya,
+  ezlKdaseSelestuMiet,
+  ezlKdaseWeldeNegodguad,
+  ezlKdaseYaekobZeSrug,
+  ezlzKdaseYohansAfewerk,
+  geezKdaseAtnatewos,
+  geezKdaseBaslyos,
+  geezKdaseDiyoscoros,
+  geezKdaseEgzi,
+  geezKdaseEpifanyos,
+  geezKdaseGorgoryos,
+  geezKdaseGorgoryosKalie,
+  geezKdaseHawaryat,
+  geezKdaseKerlos,
+  geezKdaseMaryam,
+  geezKdaseMegbiya,
+  geezKdaseSelestuMiet,
+  geezKdaseWeldeNegodguad,
+  geezKdaseYaekobZeSrug,
+  geezKdaseYohansAfewerk,
+} from "../../store/kdase_titles";
 
 import PanelList from "./PanelList";
 import SpinningHamburgerMenu from "./SpiningMenu";
+
+import kdase from "../../assets/kdase.jpg";
+import qerlos from "../../assets/qerlos.jpeg";
+import hawaryat from "../../assets/hawaryat.jpg";
+import selestuMeit from "../../assets/selestu_meit.jpeg";
+import weldenegodguad from "../../assets/weldenegodguad.jpeg";
+import yaekobZesrug from "../../assets/yaekob_zesrug.jpeg";
+import yohansAfewerk from "../../assets/yohans_afewerk.jpeg";
+import gorgoryos from "../../assets/gorgoryos.jpeg";
+import gorgoryosKalie from "../../assets/gorgoryos_kalie.jpeg";
+import diyoscoros from "../../assets/diyoscoros.jpeg";
+import athnatewos from "../../assets/athnatewos.jpg";
+import baslyos from "../../assets/baslyos.jpg";
+import egzetne from "../../assets/egzetne.jpg";
+import epifanyos from "../../assets/epiphanius.jpg";
+import egziene from "../../assets/egziene.jpg";
+import splash from "../../assets/splash.jpg";
 
 interface Data {
   title: string;
@@ -21,13 +69,224 @@ const SidePanel = () => {
   const [expandPanel, setExpandPanel] = useState(true);
   const [active, setActive] = useState(-1);
 
-  const { data, setData, setSelectedData, setTitle } = dataStore();
+  const { setSelectedData, setTitle } = dataStore();
 
-  useEffect(() => {
-    axios.get<Data[]>("http://localhost:3001/data").then((res) => {
-      setData(res.data);
-    });
-  }, []);
+  const getTitle = (data: string[]): string[] => {
+    return data.map((item) => item.split("-*-")[0]);
+  };
+
+  const titles: Data[] = [
+    {
+      title: "ግእዝ ሥርዓተ ቅዳሴ መግቢያ",
+      name: "kdase",
+      imageUrl: kdase,
+      subTitle: "ሥርዓተ ቅዳሴ ዘደብረ ዓባይ",
+      data: getTitle(geezKdaseMegbiya),
+    },
+    {
+      title: "ዕዝል ሥርዓተ ቅዳሴ መግቢያ",
+      name: "kdase",
+      imageUrl: kdase,
+      subTitle: "ሥርዓተ ቅዳሴ ዘደብረ ዓባይ",
+      data: getTitle(ezlKdaseMegbiya),
+    },
+    {
+      title: "ግእዝ ዘሐዋርያት",
+      name: "kdase",
+      imageUrl: hawaryat,
+      subTitle: "አኮቴተ ቁርባን ዘአበዊነ ሐዋርያት",
+      data: getTitle(geezKdaseHawaryat),
+    },
+    {
+      title: "ዕዝል ዘሐዋርያት",
+      name: "kdase",
+      imageUrl: hawaryat,
+      subTitle: "አኮቴተ ቁርባን ዘአበዊነ ሐዋርያት",
+      data: getTitle(ezlKdaseHawaryat),
+    },
+    {
+      title: "ግእዝ ዘእግዚእነ",
+      name: "kdase",
+      imageUrl: egziene,
+      subTitle: "አኮቴተ ቁርባን ዘእግዚእነ ወአምላክነ",
+      data: getTitle(geezKdaseEgzi),
+    },
+    {
+      title: "ዕዝል ዘእግዚእነ",
+      name: "kdase",
+      imageUrl: egziene,
+      subTitle: "አኮቴተ ቁርባን ዘእግዚእነ ወአምላክነ",
+      data: getTitle(ezlKdaseEgzi),
+    },
+    {
+      title: "ግእዝ ዘእግዝእትነ",
+      name: "kdase",
+      imageUrl: egzetne,
+      subTitle: "አኮቴተ ቁርባን ዘእግዝእትነ",
+      data: getTitle(geezKdaseMaryam),
+    },
+    {
+      title: "ዕዝል ዘእግዝእትነ",
+      name: "kdase",
+      imageUrl: egzetne,
+      subTitle: "አኮቴተ ቁርባን ዘእግዝእትነ",
+      data: getTitle(ezlKdaseMaryam),
+    },
+    {
+      title: "ግእዝ ዘቅዱስ ዮሐንስ ወልደ ነጎድጓድ",
+      name: "kdase",
+      imageUrl: weldenegodguad,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ዮሐንስ ወልደ ነጎድጓድ",
+      data: getTitle(geezKdaseWeldeNegodguad),
+    },
+    {
+      title: "ዕዝል ዘቅዱስ ዮሐንስ ወልደ ነጎድጓድ",
+      name: "kdase",
+      imageUrl: weldenegodguad,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ዮሐንስ ወልደ ነጎድጓድ",
+      data: getTitle(ezlKdaseWeldeNegodguad),
+    },
+    {
+      title: "ግእዝ ዘሠለስቱ ምእት",
+      name: "kdase",
+      imageUrl: selestuMeit,
+      subTitle: "አኮቴተ ቁርባን ዘሠለስቱ ምእት",
+      data: getTitle(geezKdaseSelestuMiet),
+    },
+    {
+      title: "ዕዝል ዘሠለስቱ ምእት",
+      name: "kdase",
+      imageUrl: selestuMeit,
+      subTitle: "አኮቴተ ቁርባን ዘሠለስቱ ምእት",
+      data: getTitle(ezlKdaseSelestuMiet),
+    },
+    {
+      title: "ግእዝ ዘቅዱስ አትናቴዎስ",
+      name: "kdase",
+      imageUrl: athnatewos,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ አትናቴዎስ",
+      data: getTitle(geezKdaseAtnatewos),
+    },
+    {
+      title: "ዕዝል ዘቅዱስ አትናቴዎስ",
+      name: "kdase",
+      imageUrl: athnatewos,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ አትናቴዎስ",
+      data: getTitle(ezlKdaseAtnatewos),
+    },
+    {
+      title: "ግእዝ ዘቅዱስ ባስልዮስ",
+      name: "kdase",
+      imageUrl: baslyos,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ባስልዮስ",
+      data: getTitle(geezKdaseBaslyos),
+    },
+    {
+      title: "ዕዝል ዘቅዱስ ባስልዮስ",
+      name: "kdase",
+      imageUrl: baslyos,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ባስልዮስ",
+      data: getTitle(ezlKdaseBaslyos),
+    },
+    {
+      title: "ግእዝ ዘቅዱስ ጎርጎርዮስ",
+      name: "kdase",
+      imageUrl: gorgoryos,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ጎርጎርዮስ",
+      data: getTitle(geezKdaseGorgoryos),
+    },
+    {
+      title: "ዕዝል ዘቅዱስ ጎርጎርዮስ",
+      name: "kdase",
+      imageUrl: gorgoryos,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ጎርጎርዮስ",
+      data: getTitle(ezlKdaseGorgoryos),
+    },
+    {
+      title: "ግእዝ ዘቅዱስ ኤጲፋንንዮስ",
+      name: "kdase",
+      imageUrl: epifanyos,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ኤጲፋንንዮስ",
+      data: getTitle(geezKdaseEpifanyos),
+    },
+    {
+      title: "ዕዝል ዘቅዱስ ኤጲፋንንዮስ",
+      name: "kdase",
+      imageUrl: epifanyos,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ኤጲፋንንዮስ",
+      data: getTitle(ezlKdaseEpifanyos),
+    },
+    {
+      title: "ግእዝ ዘቅዱስ ዮሐንስ አፈ ወርቅ",
+      name: "kdase",
+      imageUrl: yohansAfewerk,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ዮሐንስ አፈ ወርቅ",
+      data: getTitle(geezKdaseYohansAfewerk),
+    },
+    {
+      title: "ዕዝል ዘቅዱስ ዮሐንስ አፈ ወርቅ",
+      name: "kdase",
+      imageUrl: yohansAfewerk,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ዮሐንስ አፈ ወርቅ",
+      data: getTitle(ezlzKdaseYohansAfewerk),
+    },
+    {
+      title: "ግእዝ ዘቅዱስ ቄርሎስ",
+      name: "kdase",
+      imageUrl: qerlos,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ቄርሎስ",
+      data: getTitle(geezKdaseKerlos),
+    },
+    {
+      title: "ዕዝል ዘቅዱስ ቄርሎስ",
+      name: "kdase",
+      imageUrl: qerlos,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ቄርሎስ",
+      data: getTitle(ezlKdaseKerlos),
+    },
+    {
+      title: "ግእዝ ዘቅዱስ ያዕቆብ ዘሥሩግ",
+      name: "kdase",
+      imageUrl: yaekobZesrug,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ያዕቆብ ዘሥሩግ",
+      data: getTitle(geezKdaseYaekobZeSrug),
+    },
+    {
+      title: "ዕዝል ዘቅዱስ ያዕቆብ ዘሥሩግ",
+      name: "kdase",
+      imageUrl: yaekobZesrug,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ያዕቆብ ዘሥሩግ",
+      data: getTitle(ezlKdaseYaekobZeSrug),
+    },
+    {
+      title: "ግእዝ ዘቅዱስ ዲዮስቆሮስ",
+      name: "kdase",
+      imageUrl: diyoscoros,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ዲዮስቆሮስ",
+      data: getTitle(geezKdaseDiyoscoros),
+    },
+    {
+      title: "ዕዝል ዘቅዱስ ዲዮስቆሮስ",
+      name: "kdase",
+      imageUrl: diyoscoros,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ዲዮስቆሮስ",
+      data: getTitle(ezlKdaseDiyoscoros),
+    },
+    {
+      title: "ግእዝ ዘቅዱስ ጎርጎርዮስ ካልዕ",
+      name: "kdase",
+      imageUrl: gorgoryosKalie,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ጎርጎርዮስ ካልዕ",
+      data: getTitle(geezKdaseGorgoryosKalie),
+    },
+    {
+      title: "ዕዝል ዘቅዱስ ጎርጎርዮስ ካልዕ",
+      name: "kdase",
+      imageUrl: gorgoryosKalie,
+      subTitle: "አኮቴተ ቁርባን ዘቅዱስ ጎርጎርዮስ ካልዕ",
+      data: getTitle(ezlKdaseGorgoryosKalie),
+    },
+  ];
 
   return (
     <VStack
@@ -41,7 +300,7 @@ const SidePanel = () => {
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
         transition: "width 1.5s",
         gap: 0,
-        backgroundColor: "#9d6651",
+        backgroundColor: "#691c08",
       }}
     >
       <Box
@@ -80,8 +339,20 @@ const SidePanel = () => {
             borderRadius: "50%",
             alignSelf: "flex-end",
             transition: "1.5s",
+            overflow: "hidden",
+            alignItems: "center",
+            justifyContent: "center",
+            display: "flex",
           }}
-        />
+          padding={4}
+        >
+          <Avatar
+            padding={expandPanel ? "1px" : "0px"}
+            height={expandPanel ? "300px" : "110px"}
+            width={expandPanel ? "300" : "110px"}
+            src={splash}
+          />
+        </Box>
       </Box>
       <Box
         style={{
@@ -102,7 +373,7 @@ const SidePanel = () => {
             gap: 0,
           }}
         >
-          {data?.map((item: Data, index: number) => (
+          {titles?.map((item: Data, index: number) => (
             <PanelList
               onClick={() => {
                 if (active != index) {
