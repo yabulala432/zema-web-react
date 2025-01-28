@@ -67,14 +67,8 @@ function App() {
             <TitleContainer />
             <ZemaTitle />
           </Box>
-          <Box
-            display={"flex"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            padding={"10px"}
-            h={"700px"}
-          >
-            <PDFViewer initialPageNumber={1} scale={1.0} width={500} />
+          <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
+            <PDFViewer />
           </Box>
           <Box pos={"absolute"} bottom={0} width={"500px"}>
             <AudioPlayer />
