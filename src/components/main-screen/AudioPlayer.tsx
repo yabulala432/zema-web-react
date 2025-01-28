@@ -1,6 +1,5 @@
 import {
   Box,
-  HStack,
   IconButton,
   Slider,
   SliderFilledTrack,
@@ -8,9 +7,10 @@ import {
   SliderTrack,
   Text,
 } from "@chakra-ui/react";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
-import ZemaTitle from "./ZemaTitle";
+
+import dataStore from "../../store/DataStore";
 
 const AudioPlayer: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -18,6 +18,16 @@ const AudioPlayer: React.FC = () => {
   const [duration, setDuration] = useState(0);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const { song } = dataStore();
+  console.log({ song });
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.load();
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
+  }, [song]);
 
   const handlePlay = () => {
     if (audioRef.current) {
@@ -60,38 +70,33 @@ const AudioPlayer: React.FC = () => {
   };
 
   return (
-    <Box display="flex" gap={5} marginTop={"20px"} flexDir={"column"}>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      // gap={3}
+      flexDir={"column"}
+    >
       <audio
         ref={audioRef}
-        src={"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"}
+        src={song}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleDurationChange}
       />
-      <HStack
-        style={{
-          // backgroundColor: "red",
-          width: "50%",
-          display: "flex",
-          alignItems: "center",
-          gap: 20,
-          alignSelf: "center",
+      <IconButton
+        w={"70px"}
+        h={"70px"}
+        aria-label={isPlaying ? "Pause" : "Play"}
+        icon={isPlaying ? <FaPause size={20} /> : <FaPlay size={20} />}
+        onClick={handlePlay}
+        borderRadius={"50%"}
+        bgColor={"#691c08"}
+        color={"#fff"}
+        _hover={{
+          bgColor: "#691c08",
+          opacity: 0.8,
         }}
-      >
-        <IconButton
-          boxSize={"70px"}
-          aria-label={isPlaying ? "Pause" : "Play"}
-          icon={isPlaying ? <FaPause /> : <FaPlay />}
-          onClick={handlePlay}
-          borderRadius={"50%"}
-          bgColor={"#9d6651"}
-          color={"#fff"}
-          _hover={{
-            bgColor: "#9d6651",
-            opacity: 0.8,
-          }}
-        />
-        <ZemaTitle />
-      </HStack>
+      />
 
       <Box
         style={{
@@ -104,7 +109,7 @@ const AudioPlayer: React.FC = () => {
       >
         <Text
           style={{
-            color: "#9d6651",
+            color: "#691c08",
             fontWeight: "bold",
           }}
         >
@@ -126,21 +131,21 @@ const AudioPlayer: React.FC = () => {
             <SliderTrack
               style={{
                 backgroundColor: "#fff",
-                height: "10px",
-                borderRadius: "10px",
+                height: "5px",
+                borderRadius: "5px",
               }}
             >
               <SliderFilledTrack
                 style={{
-                  backgroundColor: "#9d6651",
+                  backgroundColor: "#691c08",
                 }}
               />
             </SliderTrack>
             <SliderThumb
               style={{
                 height: "20px",
-                width: "20px",
-                backgroundColor: "#9d6651",
+                width: "10px",
+                backgroundColor: "#691c08",
               }}
             />
           </Slider>
@@ -149,7 +154,7 @@ const AudioPlayer: React.FC = () => {
         <Text
           style={{
             fontWeight: "bold",
-            color: "#9d6651",
+            color: "#691c08",
           }}
         >
           {formatTime(duration)}
@@ -160,3 +165,45 @@ const AudioPlayer: React.FC = () => {
 };
 
 export default AudioPlayer;
+
+// import { Box, Stack } from "@chakra-ui/react";
+// import dataStore from "../../store/DataStore";
+
+// function AudioPlayer() {
+//   const song = dataStore((d) => d.song);
+//   console.log({ song }, "AudioPlayer");
+//   return (
+//     <Stack>
+//       <Box
+//         borderRadius="5px"
+//         boxShadow="10px 10px 20px #d6b08e, -10px -10px 20px #ffffff"
+//         justifyContent={"center"}
+//         // h={"100vh"}
+//         // w={"730.281px"}
+//         // position={"relative"}
+//       >
+//         {/* <Box pos={"absolute"} top={0} h={"105px"}>
+//           <TitleContainer />
+//           <ZemaTitle />
+//         </Box> */}
+//         {/* <Box
+//           display={"flex"}
+//           alignItems={"center"}
+//           justifyContent={"center"}
+//           padding={"10px"}
+//           h={"700px"}
+//         >
+//           <PDFViewer initialPageNumber={1} scale={1.0} width={500} />
+//         </Box> */}
+//         <Box>
+//           <audio controls>
+//             <source src={song} type="audio/mpeg" />
+//             Your browser does not support the audio element.
+//           </audio>
+//         </Box>
+//       </Box>
+//     </Stack>
+//   );
+// }
+
+// export default AudioPlayer;

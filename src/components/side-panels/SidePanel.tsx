@@ -1,60 +1,59 @@
 import { useState } from "react";
 
-import { Box, VStack, Avatar } from "@chakra-ui/react";
+import { Avatar, Box, Image, VStack } from "@chakra-ui/react";
 
 import dataStore from "../../store/DataStore";
-import {
-  ezlKdaseAtnatewos,
-  ezlKdaseBaslyos,
-  ezlKdaseDiyoscoros,
-  ezlKdaseEgzi,
-  ezlKdaseEpifanyos,
-  ezlKdaseGorgoryos,
-  ezlKdaseGorgoryosKalie,
-  ezlKdaseHawaryat,
-  ezlKdaseKerlos,
-  ezlKdaseMaryam,
-  ezlKdaseMegbiya,
-  ezlKdaseSelestuMiet,
-  ezlKdaseWeldeNegodguad,
-  ezlKdaseYaekobZeSrug,
-  ezlzKdaseYohansAfewerk,
-  geezKdaseAtnatewos,
-  geezKdaseBaslyos,
-  geezKdaseDiyoscoros,
-  geezKdaseEgzi,
-  geezKdaseEpifanyos,
-  geezKdaseGorgoryos,
-  geezKdaseGorgoryosKalie,
-  geezKdaseHawaryat,
-  geezKdaseKerlos,
-  geezKdaseMaryam,
-  geezKdaseMegbiya,
-  geezKdaseSelestuMiet,
-  geezKdaseWeldeNegodguad,
-  geezKdaseYaekobZeSrug,
-  geezKdaseYohansAfewerk,
-} from "../../store/kdase_titles";
-
 import PanelList from "./PanelList";
-import SpinningHamburgerMenu from "./SpiningMenu";
+import SpinningMenu from "./SpiningMenu";
 
+import athnatewos from "../../assets/athnatewos.jpg";
+import baslyos from "../../assets/baslyos.jpg";
+import diyoscoros from "../../assets/diyoscoros.jpeg";
+import egzetne from "../../assets/egzetne.jpg";
+import egziene from "../../assets/egziene.jpg";
+import epifanyos from "../../assets/epiphanius.jpg";
+import gorgoryos from "../../assets/gorgoryos.jpeg";
+import gorgoryosKalie from "../../assets/gorgoryos_kalie.jpeg";
+import hawaryat from "../../assets/hawaryat.jpg";
 import kdase from "../../assets/kdase.jpg";
 import qerlos from "../../assets/qerlos.jpeg";
-import hawaryat from "../../assets/hawaryat.jpg";
 import selestuMeit from "../../assets/selestu_meit.jpeg";
+import splash from "../../assets/splash.jpg";
 import weldenegodguad from "../../assets/weldenegodguad.jpeg";
 import yaekobZesrug from "../../assets/yaekob_zesrug.jpeg";
 import yohansAfewerk from "../../assets/yohans_afewerk.jpeg";
-import gorgoryos from "../../assets/gorgoryos.jpeg";
-import gorgoryosKalie from "../../assets/gorgoryos_kalie.jpeg";
-import diyoscoros from "../../assets/diyoscoros.jpeg";
-import athnatewos from "../../assets/athnatewos.jpg";
-import baslyos from "../../assets/baslyos.jpg";
-import egzetne from "../../assets/egzetne.jpg";
-import epifanyos from "../../assets/epiphanius.jpg";
-import egziene from "../../assets/egziene.jpg";
-import splash from "../../assets/splash.jpg";
+import {
+  EzlKdaseAtnatewos,
+  EzlKdaseBaslyos,
+  EzlKdaseDiyoscoros,
+  EzlKdaseEgzi,
+  EzlKdaseEpifanyos,
+  EzlKdaseGorgoryos,
+  EzlKdaseGorgoryosKalie,
+  EzlKdaseHawaryat,
+  EzlKdaseKerlos,
+  EzlKdaseMaryam,
+  EzlKdaseMegbiya,
+  EzlKdaseSelestuMiet,
+  EzlKdaseWeldeNegodguad,
+  EzlKdaseYaekobZeSrug,
+  EzlKdaseYohansAfewerk,
+  GeezKdaseAtnatewos,
+  GeezKdaseBaslyos,
+  GeezKdaseDiyoscoros,
+  GeezKdaseEgzi,
+  GeezKdaseEpifanyos,
+  GeezKdaseGorgoryos,
+  GeezKdaseGorgoryosKalie,
+  GeezKdaseHawaryat,
+  GeezKdaseKerlos,
+  GeezKdaseMaryam,
+  GeezKdaseMegbiya,
+  GeezKdaseSelestuMiet,
+  GeezKdaseWeldeNegodguad,
+  GeezKdaseYaekobZeSrug,
+  GeezKdaseYohansAfewerk,
+} from "../../store/kdase_classes";
 
 interface Data {
   title: string;
@@ -62,17 +61,29 @@ interface Data {
   imageUrl: string;
   subTitle: string;
   data: string[];
+  pdf: string;
 }
 
 const SidePanel = () => {
   const [shouldSpin, setShouldSpin] = useState(false);
-  const [expandPanel, setExpandPanel] = useState(true);
+  // const [expandPanel, setExpandPanel] = useState(true);
   const [active, setActive] = useState(-1);
 
-  const { setSelectedData, setTitle } = dataStore();
+  const {
+    setSelectedData,
+    setTitle,
+    setZemaTitle,
+    setPdf,
+    setExpandPanel,
+    expandPanel,
+  } = dataStore();
 
   const getTitle = (data: string[]): string[] => {
-    return data.map((item) => item.split("-*-")[0]);
+    return data;
+  };
+
+  const getPdf = (data: { pdf: string }): string => {
+    return data.pdf;
   };
 
   const titles: Data[] = [
@@ -81,210 +92,240 @@ const SidePanel = () => {
       name: "kdase",
       imageUrl: kdase,
       subTitle: "ሥርዓተ ቅዳሴ ዘደብረ ዓባይ",
-      data: getTitle(geezKdaseMegbiya),
+      data: getTitle(GeezKdaseMegbiya.data),
+      pdf: getPdf(GeezKdaseMegbiya),
     },
     {
       title: "ዕዝል ሥርዓተ ቅዳሴ መግቢያ",
       name: "kdase",
       imageUrl: kdase,
       subTitle: "ሥርዓተ ቅዳሴ ዘደብረ ዓባይ",
-      data: getTitle(ezlKdaseMegbiya),
+      data: getTitle(EzlKdaseMegbiya.data),
+      pdf: getPdf(EzlKdaseMegbiya),
     },
     {
       title: "ግእዝ ዘሐዋርያት",
       name: "kdase",
       imageUrl: hawaryat,
       subTitle: "አኮቴተ ቁርባን ዘአበዊነ ሐዋርያት",
-      data: getTitle(geezKdaseHawaryat),
+      data: getTitle(GeezKdaseHawaryat.data),
+      pdf: getPdf(GeezKdaseHawaryat),
     },
     {
       title: "ዕዝል ዘሐዋርያት",
       name: "kdase",
       imageUrl: hawaryat,
       subTitle: "አኮቴተ ቁርባን ዘአበዊነ ሐዋርያት",
-      data: getTitle(ezlKdaseHawaryat),
+      data: getTitle(EzlKdaseHawaryat.data),
+      pdf: getPdf(EzlKdaseHawaryat),
     },
     {
       title: "ግእዝ ዘእግዚእነ",
       name: "kdase",
       imageUrl: egziene,
       subTitle: "አኮቴተ ቁርባን ዘእግዚእነ ወአምላክነ",
-      data: getTitle(geezKdaseEgzi),
+      data: getTitle(GeezKdaseEgzi.data),
+      pdf: getPdf(GeezKdaseEgzi),
     },
     {
       title: "ዕዝል ዘእግዚእነ",
       name: "kdase",
       imageUrl: egziene,
       subTitle: "አኮቴተ ቁርባን ዘእግዚእነ ወአምላክነ",
-      data: getTitle(ezlKdaseEgzi),
+      data: getTitle(EzlKdaseEgzi.data),
+      pdf: getPdf(EzlKdaseEgzi),
     },
     {
       title: "ግእዝ ዘእግዝእትነ",
       name: "kdase",
       imageUrl: egzetne,
       subTitle: "አኮቴተ ቁርባን ዘእግዝእትነ",
-      data: getTitle(geezKdaseMaryam),
+      data: getTitle(GeezKdaseMaryam.data),
+      pdf: getPdf(GeezKdaseMaryam),
     },
     {
       title: "ዕዝል ዘእግዝእትነ",
       name: "kdase",
       imageUrl: egzetne,
       subTitle: "አኮቴተ ቁርባን ዘእግዝእትነ",
-      data: getTitle(ezlKdaseMaryam),
+      data: getTitle(EzlKdaseMaryam.data),
+      pdf: getPdf(EzlKdaseMaryam),
     },
     {
       title: "ግእዝ ዘቅዱስ ዮሐንስ ወልደ ነጎድጓድ",
       name: "kdase",
       imageUrl: weldenegodguad,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ዮሐንስ ወልደ ነጎድጓድ",
-      data: getTitle(geezKdaseWeldeNegodguad),
+      data: getTitle(GeezKdaseWeldeNegodguad.data),
+      pdf: getPdf(GeezKdaseWeldeNegodguad),
     },
     {
       title: "ዕዝል ዘቅዱስ ዮሐንስ ወልደ ነጎድጓድ",
       name: "kdase",
       imageUrl: weldenegodguad,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ዮሐንስ ወልደ ነጎድጓድ",
-      data: getTitle(ezlKdaseWeldeNegodguad),
+      data: getTitle(EzlKdaseWeldeNegodguad.data),
+      pdf: getPdf(EzlKdaseWeldeNegodguad),
     },
     {
       title: "ግእዝ ዘሠለስቱ ምእት",
       name: "kdase",
       imageUrl: selestuMeit,
       subTitle: "አኮቴተ ቁርባን ዘሠለስቱ ምእት",
-      data: getTitle(geezKdaseSelestuMiet),
+      data: getTitle(GeezKdaseSelestuMiet.data),
+      pdf: getPdf(GeezKdaseSelestuMiet),
     },
     {
       title: "ዕዝል ዘሠለስቱ ምእት",
       name: "kdase",
       imageUrl: selestuMeit,
       subTitle: "አኮቴተ ቁርባን ዘሠለስቱ ምእት",
-      data: getTitle(ezlKdaseSelestuMiet),
+      data: getTitle(EzlKdaseSelestuMiet.data),
+      pdf: getPdf(EzlKdaseSelestuMiet),
     },
     {
       title: "ግእዝ ዘቅዱስ አትናቴዎስ",
       name: "kdase",
       imageUrl: athnatewos,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ አትናቴዎስ",
-      data: getTitle(geezKdaseAtnatewos),
+      data: getTitle(GeezKdaseAtnatewos.data),
+      pdf: getPdf(GeezKdaseAtnatewos),
     },
     {
       title: "ዕዝል ዘቅዱስ አትናቴዎስ",
       name: "kdase",
       imageUrl: athnatewos,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ አትናቴዎስ",
-      data: getTitle(ezlKdaseAtnatewos),
+      data: getTitle(EzlKdaseAtnatewos.data),
+      pdf: getPdf(EzlKdaseAtnatewos),
     },
     {
       title: "ግእዝ ዘቅዱስ ባስልዮስ",
       name: "kdase",
       imageUrl: baslyos,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ባስልዮስ",
-      data: getTitle(geezKdaseBaslyos),
+      data: getTitle(GeezKdaseBaslyos.data),
+      pdf: getPdf(GeezKdaseBaslyos),
     },
     {
       title: "ዕዝል ዘቅዱስ ባስልዮስ",
       name: "kdase",
       imageUrl: baslyos,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ባስልዮስ",
-      data: getTitle(ezlKdaseBaslyos),
+      data: getTitle(EzlKdaseBaslyos.data),
+      pdf: getPdf(EzlKdaseBaslyos),
     },
     {
       title: "ግእዝ ዘቅዱስ ጎርጎርዮስ",
       name: "kdase",
       imageUrl: gorgoryos,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ጎርጎርዮስ",
-      data: getTitle(geezKdaseGorgoryos),
+      data: getTitle(GeezKdaseGorgoryos.data),
+      pdf: getPdf(GeezKdaseGorgoryos),
     },
     {
       title: "ዕዝል ዘቅዱስ ጎርጎርዮስ",
       name: "kdase",
       imageUrl: gorgoryos,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ጎርጎርዮስ",
-      data: getTitle(ezlKdaseGorgoryos),
+      data: getTitle(EzlKdaseGorgoryos.data),
+      pdf: getPdf(EzlKdaseGorgoryos),
     },
     {
       title: "ግእዝ ዘቅዱስ ኤጲፋንንዮስ",
       name: "kdase",
       imageUrl: epifanyos,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ኤጲፋንንዮስ",
-      data: getTitle(geezKdaseEpifanyos),
+      data: getTitle(GeezKdaseEpifanyos.data),
+      pdf: getPdf(GeezKdaseEpifanyos),
     },
     {
       title: "ዕዝል ዘቅዱስ ኤጲፋንንዮስ",
       name: "kdase",
       imageUrl: epifanyos,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ኤጲፋንንዮስ",
-      data: getTitle(ezlKdaseEpifanyos),
+      data: getTitle(EzlKdaseEpifanyos.data),
+      pdf: getPdf(EzlKdaseEpifanyos),
     },
     {
       title: "ግእዝ ዘቅዱስ ዮሐንስ አፈ ወርቅ",
       name: "kdase",
       imageUrl: yohansAfewerk,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ዮሐንስ አፈ ወርቅ",
-      data: getTitle(geezKdaseYohansAfewerk),
+      data: getTitle(GeezKdaseYohansAfewerk.data),
+      pdf: getPdf(GeezKdaseYohansAfewerk),
     },
     {
       title: "ዕዝል ዘቅዱስ ዮሐንስ አፈ ወርቅ",
       name: "kdase",
       imageUrl: yohansAfewerk,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ዮሐንስ አፈ ወርቅ",
-      data: getTitle(ezlzKdaseYohansAfewerk),
+      data: getTitle(EzlKdaseYohansAfewerk.data),
+      pdf: getPdf(EzlKdaseYohansAfewerk),
     },
     {
       title: "ግእዝ ዘቅዱስ ቄርሎስ",
       name: "kdase",
       imageUrl: qerlos,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ቄርሎስ",
-      data: getTitle(geezKdaseKerlos),
+      data: getTitle(GeezKdaseKerlos.data),
+      pdf: getPdf(GeezKdaseKerlos),
     },
     {
       title: "ዕዝል ዘቅዱስ ቄርሎስ",
       name: "kdase",
       imageUrl: qerlos,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ቄርሎስ",
-      data: getTitle(ezlKdaseKerlos),
+      data: getTitle(EzlKdaseKerlos.data),
+      pdf: getPdf(EzlKdaseKerlos),
     },
     {
       title: "ግእዝ ዘቅዱስ ያዕቆብ ዘሥሩግ",
       name: "kdase",
       imageUrl: yaekobZesrug,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ያዕቆብ ዘሥሩግ",
-      data: getTitle(geezKdaseYaekobZeSrug),
+      data: getTitle(GeezKdaseYaekobZeSrug.data),
+      pdf: getPdf(GeezKdaseYaekobZeSrug),
     },
     {
       title: "ዕዝል ዘቅዱስ ያዕቆብ ዘሥሩግ",
       name: "kdase",
       imageUrl: yaekobZesrug,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ያዕቆብ ዘሥሩግ",
-      data: getTitle(ezlKdaseYaekobZeSrug),
+      data: getTitle(EzlKdaseYaekobZeSrug.data),
+      pdf: getPdf(EzlKdaseYaekobZeSrug),
     },
     {
       title: "ግእዝ ዘቅዱስ ዲዮስቆሮስ",
       name: "kdase",
       imageUrl: diyoscoros,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ዲዮስቆሮስ",
-      data: getTitle(geezKdaseDiyoscoros),
+      data: getTitle(GeezKdaseDiyoscoros.data),
+      pdf: getPdf(GeezKdaseDiyoscoros),
     },
     {
       title: "ዕዝል ዘቅዱስ ዲዮስቆሮስ",
       name: "kdase",
       imageUrl: diyoscoros,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ዲዮስቆሮስ",
-      data: getTitle(ezlKdaseDiyoscoros),
+      data: getTitle(EzlKdaseDiyoscoros.data),
+      pdf: getPdf(EzlKdaseDiyoscoros),
     },
     {
       title: "ግእዝ ዘቅዱስ ጎርጎርዮስ ካልዕ",
       name: "kdase",
       imageUrl: gorgoryosKalie,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ጎርጎርዮስ ካልዕ",
-      data: getTitle(geezKdaseGorgoryosKalie),
+      data: getTitle(GeezKdaseGorgoryosKalie.data),
+      pdf: getPdf(GeezKdaseGorgoryosKalie),
     },
     {
       title: "ዕዝል ዘቅዱስ ጎርጎርዮስ ካልዕ",
       name: "kdase",
       imageUrl: gorgoryosKalie,
       subTitle: "አኮቴተ ቁርባን ዘቅዱስ ጎርጎርዮስ ካልዕ",
-      data: getTitle(ezlKdaseGorgoryosKalie),
+      data: getTitle(EzlKdaseGorgoryosKalie.data),
+      pdf: getPdf(EzlKdaseGorgoryosKalie),
     },
   ];
 
@@ -320,9 +361,9 @@ const SidePanel = () => {
             padding: "10px",
           }}
         >
-          <SpinningHamburgerMenu
+          <SpinningMenu
             size={35}
-            color="white"
+            color={expandPanel ? "#691c08" : "white"}
             should_spin_forward={shouldSpin}
             onClick={() => {
               setShouldSpin(expandPanel);
@@ -336,22 +377,30 @@ const SidePanel = () => {
             width: "100%",
             height: expandPanel ? "300px" : "110px",
             backgroundColor: "#f7d1a1",
-            borderRadius: "50%",
+            // borderTopRightRadius: "30%",
+            borderBottomRightRadius: "35%",
+            borderBottomLeftRadius: "35%",
+            borderTopLeftRadius: expandPanel ? 0 : "20%",
             alignSelf: "flex-end",
-            transition: "1.5s",
+            transition: "1s",
             overflow: "hidden",
             alignItems: "center",
             justifyContent: "center",
             display: "flex",
           }}
-          padding={4}
         >
-          <Avatar
-            padding={expandPanel ? "1px" : "0px"}
-            height={expandPanel ? "300px" : "110px"}
-            width={expandPanel ? "300" : "110px"}
-            src={splash}
-          />
+          {expandPanel ? (
+            <Image
+              // padding={expandPanel ? "0px" : "0px"}
+              height={"80%"}
+              // width={expandPanel ? "320px" : "110px"}
+              src={splash}
+              borderRadius={"15%"}
+              bgSize={"contain"}
+            />
+          ) : (
+            <Avatar size={"xl"} src={splash} />
+          )}
         </Box>
       </Box>
       <Box
@@ -378,9 +427,11 @@ const SidePanel = () => {
               onClick={() => {
                 if (active != index) {
                   setActive(index);
+                  setSelectedData(item.data);
+                  setTitle(item.title);
+                  setZemaTitle(item.subTitle);
+                  setPdf(item.pdf);
                 }
-                setSelectedData(item.data);
-                setTitle(item.title);
               }}
               active={active === index}
               style={{

@@ -27,7 +27,7 @@ interface SpinningHamburgerMenuProps extends IconBaseProps {
   props?: any;
 }
 
-const SpinningHamburgerMenu = styled(
+const SpinningMenu = styled(
   ({ should_spin_forward, ...props }: SpinningHamburgerMenuProps) => (
     <GiHamburgerMenu {...props} />
   )
@@ -42,4 +42,4 @@ const SpinningHamburgerMenu = styled(
         `};
 `;
 
-export default SpinningHamburgerMenu;
+export default SpinningMenu;
