@@ -18,11 +18,13 @@ const ListItem = ({ title, style, active, onClick }: Props) => {
       bgColor={active ? "#f7d1a1" : "transparent"}
       style={{
         width: "100%",
-        padding: active ? "6px" : "3px",
+        paddingTop: active ? "6px" : "3px",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         height: active ? "60px" : "50px",
+        overflow: "scroll",
+        // paddingLeft: "10px",
         ...style,
       }}
       onClick={onClick}

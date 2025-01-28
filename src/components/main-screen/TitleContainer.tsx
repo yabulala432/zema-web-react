@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 
 import dataStore from "../../store/DataStore";
 
@@ -6,21 +6,16 @@ function TitleContainer() {
   const title = dataStore((s) => s.title);
 
   return (
-    <Box
+    <Text
       style={{
-        paddingBottom: "5px",
+        color: "#691c08",
+        fontWeight: "bold",
+        fontSize: "40px",
+        textAlign: "center",
       }}
     >
-      <Text
-        style={{
-          color: "#9d6651",
-          fontWeight: "bolder",
-          fontSize: "30px",
-        }}
-      >
-        {title}
-      </Text>
-    </Box>
+      {title}
+    </Text>
   );
 }
 

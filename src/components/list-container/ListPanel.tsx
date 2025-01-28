@@ -8,17 +8,18 @@ import ListItem from "./ListItem";
 function ListPanel() {
   const selectedData = dataStore((s) => s.selectedData);
   const setZemaTitle = dataStore((s) => s.setZemaTitle);
+  const setSong = dataStore((s) => s.setSong);
   const [active, setActive] = useState(-1);
 
   useEffect(() => {
     setActive(-1);
-    // console.log({ selectedData });
   }, [selectedData]);
 
   return (
     <Box
       style={{
-        minWidth: "200px",
+        width: "300px",
+        overflow: "hidden",
         height: "100vh",
         borderTopRightRadius: 20,
         backgroundColor: "#691c08",
@@ -49,12 +50,12 @@ function ListPanel() {
               key={index}
             >
               <ListItem
-                title={data}
+                title={data.split("-*-")[0]}
                 active={active === index}
                 onClick={() => {
                   setActive(index);
                   setZemaTitle(data);
-                  console.log({ data });
+                  setSong(data.split("-*-")[1]);
                 }}
               />
               <hr
