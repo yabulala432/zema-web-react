@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Box, Button } from "@chakra-ui/react";
 import PropTypes from "prop-types";
@@ -7,9 +7,11 @@ import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 
+// import pdfWorker from "pdfjs-dist/";
+
 import dataStore from "../../store/DataStore";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `${window.location.origin}/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs"; ///`https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.min.mjs`;
 
 interface PDFViewerProps {
   scale?: number;
@@ -20,7 +22,20 @@ const PDFViewer = ({ scale = 1.0, width = 500 }: PDFViewerProps) => {
   const [numPages, setNumPages] = useState<null | number>(null);
   const [pageNumber, setPageNumber] = useState(1);
 
+  const [pdfBlob, setPdfBlob] = useState<Blob | null>(null);
+
   const { pdf } = dataStore();
+
+  useEffect(() => {
+    const fetchPdf = async () => {
+      const response = await fetch(pdf);
+      const blob = await response.blob();
+      setPdfBlob(blob);
+    };
+
+    fetchPdf();
+  }, [pdf]);
+
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number | null }) => {
     setNumPages(numPages);
   };
@@ -68,7 +83,7 @@ const PDFViewer = ({ scale = 1.0, width = 500 }: PDFViewerProps) => {
         overflow={"scroll"}
       >
         <div style={{ flex: 1, overflow: "scroll" }}>
-          <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+          <Document file={pdfBlob} onLoadSuccess={onDocumentLoadSuccess}>
             <Page pageNumber={pageNumber} scale={scale} width={width} />
           </Document>
         </div>
