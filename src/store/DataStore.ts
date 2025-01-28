@@ -6,6 +6,10 @@ export interface Data {
   imageUrl: string;
   subTitle: string;
   data: string[];
+  pdf: string;
+  song: string;
+  expandPanel: boolean;
+  setExpandPanel: (expandPanel: boolean) => void;
 }
 
 interface Store {
@@ -20,6 +24,15 @@ interface Store {
 
   zemaTitle: string;
   setZemaTitle: (zema: string) => void;
+
+  pdf: string;
+  setPdf: (pdf: string) => void;
+
+  song: string;
+  setSong: (song: string) => void;
+
+  expandPanel: boolean;
+  setExpandPanel: (expandPanel: boolean) => void;
 }
 
 const dataStore = create<Store>((set) => ({
@@ -34,6 +47,15 @@ const dataStore = create<Store>((set) => ({
 
   zemaTitle: "",
   setZemaTitle: (zemaTitle: string) => set({ zemaTitle }),
+
+  pdf: "",
+  setPdf: (pdf: string) => set({ pdf }),
+
+  song: "",
+  setSong: (song: string) => set({ song }),
+
+  expandPanel: true,
+  setExpandPanel: (expandPanel: boolean) => set({ expandPanel }),
 }));
 
 export default dataStore;
