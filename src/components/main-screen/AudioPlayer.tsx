@@ -19,7 +19,7 @@ const AudioPlayer: React.FC = () => {
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const { song } = dataStore();
-  console.log({ song });
+  // console.log({ song });
 
   useEffect(() => {
     if (audioRef.current) {
