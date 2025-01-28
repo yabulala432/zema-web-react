@@ -9,7 +9,7 @@ import "react-pdf/dist/esm/Page/TextLayer.css";
 
 import dataStore from "../../store/DataStore";
 
-pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+pdfjs.GlobalWorkerOptions.workerSrc = `${window.location.origin}/pdf.worker.min.mjs`;
 
 interface PDFViewerProps {
   scale?: number;
