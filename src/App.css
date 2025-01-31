@@ -5,3 +5,13 @@
 * {
   user-select: none;
 }
+
+/* For Firefox */
+* {
+  scrollbar-width: none; /* Firefox */
+}
+
+/* For Internet Explorer and Edge */
+*::-ms-scrollbar {
+  display: none; /* IE and Edge */
+}
