@@ -12,6 +12,7 @@ function TitleContainer() {
         fontWeight: "bold",
         fontSize: "40px",
         textAlign: "center",
+        userSelect: "text",
       }}
     >
       {title}

@@ -68,7 +68,14 @@ function App() {
             display={"flex"}
             flexDir={"column"}
             alignItems={"center"}
+            paddingX={"25px"}
+            borderRadius={"10px"}
             justifyContent={"center"}
+            _hover={{
+              boxShadow: "10px 10px 20px #691c08, -10px -10px 15px #ffffff", // Softer shadow on hover
+            }}
+            // transition="all 2.5s"
+            transition="all .5s ease-in-out"
           >
             <TitleContainer />
             <ZemaTitle />

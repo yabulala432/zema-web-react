@@ -10,6 +10,7 @@ function ZemaTitle() {
       fontSize={"3xl"}
       color={"#691c08"}
       fontWeight={"bold"}
+      userSelect={"text"}
     >
       {zemaTtile.replace(/_/g, " ").split("-*-")[0]}
     </Text>
