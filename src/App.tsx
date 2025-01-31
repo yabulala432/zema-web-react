@@ -15,7 +15,7 @@ import SidePanel from "./components/side-panels/SidePanel";
 import "./App.css";
 
 function App() {
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(true);
   const setExpandPanel = dataStore((state) => state.setExpandPanel);
 
   useEffect(() => {
@@ -52,25 +52,29 @@ function App() {
         alignSelf={"center"}
         justifyContent={"center"}
         w={"100%"}
-        overflow={"auto"}
+        h={"100vh"}
+        overflow={"scroll"}
       >
         <VStack
           border="1px solid #f7d1a1"
           borderRadius="5px"
+          overflow={"scroll"}
           boxShadow="10px 10px 20px #d6b08e, -10px -10px 20px #ffffff"
           justify={"center"}
-          h={"100vh"}
+          minH={"700px"}
           w={"730.281px"}
-          position={"relative"}
         >
-          <Box pos={"absolute"} top={0} h={"105px"}>
+          <Box
+            display={"flex"}
+            flexDir={"column"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
             <TitleContainer />
             <ZemaTitle />
           </Box>
-          <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
-            <PDFViewer />
-          </Box>
-          <Box pos={"absolute"} bottom={0} width={"500px"}>
+          <PDFViewer />
+          <Box bottom={0} width={"500px"}>
             <AudioPlayer />
           </Box>
         </VStack>
