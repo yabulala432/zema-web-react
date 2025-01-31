@@ -127,7 +127,7 @@ function App() {
           size="lg"
           borderRadius="full"
         >
-          Download App
+          Coming Soon!
         </Button>
       </VStack>
     </Box>
