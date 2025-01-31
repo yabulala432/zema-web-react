@@ -23,6 +23,7 @@ const AudioPlayer: React.FC = () => {
 
   useEffect(() => {
     if (audioRef.current) {
+      console.log("audioRef.current", audioRef.current);
       audioRef.current.load();
       audioRef.current.play();
       setIsPlaying(true);
@@ -74,8 +75,20 @@ const AudioPlayer: React.FC = () => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      // gap={3}
-      flexDir={"column"}
+      flexDir={"row"}
+      borderRadius="full"
+      boxShadow="10px 10px 20px #d6b08e, -10px -10px 20px #ffffff"
+      // boxShadow="10px 10px 20px #fff, -10px -10px 20px #d6b08e"
+      padding="5px"
+      // hover
+      // _hover={{
+      //   boxShadow: "inset 10px 10px 20px #fff, inset -10px -10px 20px #d6b08e",
+      // }}
+      _hover={{
+        boxShadow: "10px 10px 20px #691c08, -10px -10px 15px #ffffff", // Softer shadow on hover
+      }}
+      // transition="all 2.5s"
+      transition="all .5s ease-in-out"
     >
       <audio
         ref={audioRef}
