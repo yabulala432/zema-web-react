@@ -1,45 +1,43 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 interface Props {
   title: string;
   active: boolean;
-  style?: React.CSSProperties;
   onClick: () => void;
 }
 
-const ListItem = ({ title, style, active, onClick }: Props) => {
+const ListItem = ({ title, active, onClick }: Props) => {
   return (
-    <Flex
-      _hover={{
-        backgroundColor: active ? "none" : "rgba(247, 209, 161,.4)",
-        cursor: "pointer",
-        color: "#f7d1a1",
-      }}
+    <Box
+      _hover={
+        active
+          ? {}
+          : {
+              backgroundColor: "#9d6651",
+              cursor: "pointer",
+              fontSize: "22px",
+              fontWeight: 900,
+            }
+      }
+      fontSize={active ? "22px" : "18px"}
       bgColor={active ? "#f7d1a1" : "transparent"}
-      style={{
-        width: "100%",
-        paddingTop: active ? "6px" : "3px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: active ? "60px" : "50px",
-        overflow: "scroll",
-        // paddingLeft: "10px",
-        ...style,
-      }}
+      width="100%"
+      paddingTop={active ? "6px" : "3px"}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      height={active ? "60px" : "50px"}
+      overflowX="scroll"
       onClick={onClick}
     >
       <Text
         color={active ? "#9d6651" : "#fff"}
-        fontSize={active ? "22px" : "18px"}
         fontWeight={active ? 900 : 600}
-        style={{
-          transition: "0.5s",
-        }}
+        transition={"0.5s"}
       >
         {title}
       </Text>
-    </Flex>
+    </Box>
   );
 };
 
