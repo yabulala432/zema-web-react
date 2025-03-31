@@ -21,19 +21,34 @@ const AudioPlayer: React.FC = () => {
   const { song } = dataStore();
   // console.log({ song });
 
+  const playSong = async () => {
+    audioRef.current?.load();
+    const playPromise = audioRef.current?.play();
+    if (playPromise !== undefined) {
+      // console.log("playPromise", playPromise);
+      playPromise
+        .then((_) => {
+          setIsPlaying(true);
+        })
+        .catch(() => {
+          setIsPlaying(false);
+          // console.error("Error during playback: man !", error);
+        });
+    }
+  };
+
   useEffect(() => {
-    if (audioRef.current) {
-      console.log("audioRef.current", audioRef.current);
-      audioRef.current.load();
-      audioRef.current.play();
-      setIsPlaying(true);
+    if (audioRef.current && song) {
+      playSong();
     }
   }, [song]);
 
   const handlePlay = () => {
-    if (audioRef.current) {
+    if (audioRef.current && song) {
       if (!isPlaying) {
-        audioRef.current.play();
+        audioRef.current.play().catch(() => {
+          setIsPlaying(false);
+        });
       } else {
         audioRef.current.pause();
       }
