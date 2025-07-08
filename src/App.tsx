@@ -119,6 +119,12 @@ function App() {
           features.
         </Text>
         <Button
+          // on click download the app from google drive link
+          // link =  https://drive.google.com/file/d/1SoQtazi1zZqzWROr_YeSugRAEx0PxSqZ/view?usp=sharing
+          as="a"
+          href="https://docs.google.com/uc?export=download&id=1SoQtazi1zZqzWROr_YeSugRAEx0PxSqZ"
+          target="_blank"
+          download
           leftIcon={<FaDownload />}
           colorScheme="red"
           bgColor="#691c08"
@@ -127,7 +133,7 @@ function App() {
           size="lg"
           borderRadius="full"
         >
-          Coming Soon!
+          Download Now!
         </Button>
       </VStack>
     </Box>
