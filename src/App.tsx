@@ -122,7 +122,7 @@ function App() {
           // on click download the app from google drive link
           // link =  https://drive.google.com/file/d/1SoQtazi1zZqzWROr_YeSugRAEx0PxSqZ/view?usp=sharing
           as="a"
-          href="https://docs.google.com/uc?export=download&id=1SoQtazi1zZqzWROr_YeSugRAEx0PxSqZ"
+          href="https://docs.google.com/uc?export=download&id=14ZidDIPSXeQ_-5rUvr2KVSQqFkkIU2oo"
           target="_blank"
           download
           leftIcon={<FaDownload />}
